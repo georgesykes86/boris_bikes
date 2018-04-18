@@ -1,6 +1,9 @@
 class Bike
   def working?
     true
-    puts "hi"
+  end
+
+  def dock_bike
+    @bikes.push(self)
   end
 end
