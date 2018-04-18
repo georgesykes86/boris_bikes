@@ -19,7 +19,7 @@ end
     if @bikes.length >= 20
       raise StandardError.new("Bike station is full")
     else
-      @bikes.push(bike)
+      @bikes << bike
     end
   end
 
