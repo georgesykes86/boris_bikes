@@ -6,6 +6,12 @@ describe DockingStation do
 
   it {is_expected.to respond_to(:dock).with(1).argument}
 
+  it 'assigns station capacity on initialisation' do
+    num = rand(50)
+    station = DockingStation.new(num)
+    expect(station.capacity).to eq num
+  end
+
 describe 'docking bikes' do
   let(:docking_capacity) {DockingStation::DEFAULT_CAPACITY}
   it 'raises error if full (20)' do
