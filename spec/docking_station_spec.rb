@@ -28,9 +28,10 @@ describe DockingStation do
       docking_capacity.times {subject.dock bike}
       expect(subject.bikes.length).to eq docking_capacity
     end
-###FIX BELOW BIKE VAR
+
     it 'docks a bike' do
-      expect(subject.dock(bike)).to eq [bike]
+      subject.dock bike
+      expect(subject.bikes).to include bike
     end
   end
 
