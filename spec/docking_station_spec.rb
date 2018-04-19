@@ -7,17 +7,17 @@ describe DockingStation do
   it {is_expected.to respond_to(:dock).with(1).argument}
 
 describe 'docking bikes' do
-
+  let(:docking_capacity) {DockingStation::DEFAULT_CAPACITY}
   it 'raises error if full (20)' do
     proc = Proc.new do
-      21.times {subject.dock Bike.new}
+      (docking_capacity+1).times {subject.dock Bike.new}
     end
     expect {proc.call}.to raise_error("Bike station is full")
   end
 
   it 'when full returns array length 20' do
-    20.times {subject.dock Bike.new}
-    expect(subject.bikes.length).to eq 20
+    docking_capacity.times {subject.dock Bike.new}
+    expect(subject.bikes.length).to eq docking_capacity
   end
 
   it 'docks a bike' do
