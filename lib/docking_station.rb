@@ -11,6 +11,7 @@ end
 
   def release_bike
     raise StandardError.new("No bikes available") if empty?
+    raise StandardError.new("No working bikes") unless working_bikes?
     @bikes.pop
   end
 
@@ -27,5 +28,9 @@ private
 
   def empty?
     @bikes.empty?
+  end
+
+  def working_bikes?
+    @bikes.any? {|bike| bike.working?}
   end
 end
