@@ -1,7 +1,6 @@
 require 'docking_station'
 
 describe DockingStation do
-  subject {DockingStation.new(20)}
   it {is_expected.to respond_to(:release_bike)}
 
   it {is_expected.to respond_to(:dock).with(1).argument}
@@ -10,6 +9,10 @@ describe DockingStation do
     num = rand(50)
     station = DockingStation.new(num)
     expect(station.capacity).to eq num
+  end
+
+  it "defaults to default capacity (20)" do
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
 
 describe 'docking bikes' do
