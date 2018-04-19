@@ -8,19 +8,22 @@ def initialize
 end
 
   def release_bike
-    if @bikes.empty?
-       raise StandardError.new("No bikes available")
-    else
-      @bikes.pop
-    end
+    raise StandardError.new("No bikes available") if empty?
+    @bikes.pop
   end
 
   def dock(bike)
-    if @bikes.length >= 20
-      raise StandardError.new("Bike station is full")
-    else
-      @bikes << bike
-    end
+    raise StandardError.new("Bike station is full") if full?
+    @bikes << bike
   end
 
+private
+
+  def full?
+    @bikes.count >= 20
+  end
+
+  def empty?
+    @bikes.empty?
+  end
 end
