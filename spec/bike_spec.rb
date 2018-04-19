@@ -2,26 +2,30 @@ require 'bike'
 
 describe Bike do
 
-  it {is_expected.to respond_to(:working?)}
-
   describe '#working' do
-    let(:bike) {Bike.new}
-
     context 'when the bike is working' do
-      before { bike.broken = false }
       it 'shows that it is working' do
-        expect(bike.working?).to be true
+        expect(subject).to be_working
       end
 
     end
 
     context 'when the bike is broken' do
-      before { bike.broken = true }
+      before { subject.broken = true }
       it 'shows that it is not working' do
-        expect(bike.working?).to be false
+        expect(subject).not_to be_working
       end
 
     end
+  end
+
+  describe '#report_broken' do
+    it 'lets bike be reported as broken' do
+      subject.report_broken
+      expect(subject).not_to be_working
+    end
+
+
   end
 
 end
