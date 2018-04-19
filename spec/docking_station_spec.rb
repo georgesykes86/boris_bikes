@@ -45,6 +45,19 @@ end
       end
     end
 
+    context "when there is only one working bike amongst boken bikes" do
+      it "releases the working bike" do
+        working_bike = Bike.new
+        broken_bike = Bike.new
+        broken_bike.report_broken
+        station = DockingStation.new(10)
+        station.dock(broken_bike)
+        station.dock(working_bike)
+        station.dock(broken_bike)
+        expect(station.release_bike).to eq working_bike
+      end
+    end
+
     context "when there isn't a working bike" do
       bike = Bike.new
       before do

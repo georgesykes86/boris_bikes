@@ -12,7 +12,7 @@ end
   def release_bike
     raise StandardError.new("No bikes available") if empty?
     raise StandardError.new("No working bikes") unless working_bikes?
-    @bikes.pop
+    find_working_bikes.pop
   end
 
   def dock(bike)
@@ -32,5 +32,9 @@ private
 
   def working_bikes?
     @bikes.any? {|bike| bike.working?}
+  end
+
+  def find_working_bikes
+    @bikes.select { |bike| bike.working? }
   end
 end
