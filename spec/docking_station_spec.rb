@@ -16,7 +16,7 @@ describe DockingStation do
 
   describe '#dock' do
     let(:docking_capacity) {DockingStation::DEFAULT_CAPACITY}
-    let(:bike) { instance_double('Bike')}
+    let(:bike) { instance_double('Bike') }
     it 'raises error if full (20)' do
       proc = Proc.new do
         (docking_capacity+1).times {subject.dock bike}
@@ -37,14 +37,8 @@ describe DockingStation do
 
 
   describe '#release_bike' do
-    let(:working_bike) { instance_double('Bike') }
-    let(:broken_bike) { instance_double('Bike') }
-    before do
-      allow(broken_bike).to receive(:working?)
-        .and_return(false)
-      allow(working_bike).to receive(:working?)
-        .and_return(true)
-    end
+    let(:working_bike) { instance_double('Bike', working?: true) }
+    let(:broken_bike) { instance_double('Bike', working?: false) }
 
     context "when there is a working bike" do
       before {subject.dock(working_bike)}

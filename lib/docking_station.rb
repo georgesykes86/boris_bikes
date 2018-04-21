@@ -34,7 +34,8 @@ private
     @bikes.any? {|bike| bike.working?}
   end
 
-  def find_working_bikes
-    @bikes.select { |bike| bike.working? }
+  def release_working_bike
+    @bikes.sort_by! { |bike| bike.working?.to_s }
+    @bikes.pop
   end
 end
